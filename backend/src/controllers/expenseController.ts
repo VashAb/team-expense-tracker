@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Expense from '../models/Expense';
 import asyncHandler from '../middleware/asyncHandler';
+import { VALIDATION } from '../constants';
 
 // @desc    Get all expenses (optionally filtered by category)
 // @route   GET /api/expenses
@@ -10,7 +11,7 @@ export const getExpenses = asyncHandler(async (req: Request, res: Response) => {
     filter.category = req.query.category;
   }
 
-  const expenses = await Expense.find(filter).sort({ date: -1 }).limit(100);
+  const expenses = await Expense.find(filter).sort({ date: -1 }).limit(VALIDATION.EXPENSE_LIST_LIMIT);
   res.json(expenses);
 });
 

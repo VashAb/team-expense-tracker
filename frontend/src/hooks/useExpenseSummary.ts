@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../api/axios';
-import { ExpenseSummary } from '../types/expense';
+import type { ExpenseSummary } from '../types/expense';
 
 export const useExpenseSummary = () => {
   return useQuery<ExpenseSummary[]>({

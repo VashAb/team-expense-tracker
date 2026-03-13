@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { IExpense, CATEGORIES } from '../types';
+import { VALIDATION } from '../constants';
 
 const expenseSchema = new Schema<IExpense>(
   {
@@ -7,12 +8,12 @@ const expenseSchema = new Schema<IExpense>(
       type: String,
       required: [true, 'Title is required'],
       trim: true,
-      maxlength: [120, 'Title cannot exceed 120 characters'],
+      maxlength: [VALIDATION.TITLE_MAX_LENGTH, `Title cannot exceed ${VALIDATION.TITLE_MAX_LENGTH} characters`],
     },
     amount: {
       type: Number,
       required: [true, 'Amount is required'],
-      min: [0.01, 'Amount must be at least 0.01'],
+      min: [VALIDATION.AMOUNT_MIN, `Amount must be at least ${VALIDATION.AMOUNT_MIN}`],
     },
     category: {
       type: String,
@@ -30,7 +31,7 @@ const expenseSchema = new Schema<IExpense>(
     notes: {
       type: String,
       trim: true,
-      maxlength: [500, 'Notes cannot exceed 500 characters'],
+      maxlength: [VALIDATION.NOTES_MAX_LENGTH, `Notes cannot exceed ${VALIDATION.NOTES_MAX_LENGTH} characters`],
     },
   },
   {

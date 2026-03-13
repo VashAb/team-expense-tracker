@@ -1,27 +1,17 @@
-import { Expense, Category } from '../types/expense';
+import type { Expense } from '../types/expense';
 import { formatCurrency, formatDate } from '../utils/format';
-
-const categoryColors: Record<Category, string> = {
-  Food: 'bg-green-100 text-green-800',
-  Travel: 'bg-blue-100 text-blue-800',
-  Software: 'bg-purple-100 text-purple-800',
-  Equipment: 'bg-orange-100 text-orange-800',
-  'Office Supplies': 'bg-yellow-100 text-yellow-800',
-  Marketing: 'bg-pink-100 text-pink-800',
-  Other: 'bg-gray-100 text-gray-800',
-};
+import { CATEGORY_COLORS } from '../constants';
+import Button from './Button';
+import DeleteButton from './DeleteButton';
 
 interface ExpenseCardProps {
   expense: Expense;
-  onClick: (expense: Expense) => void;
+  onEdit: (expense: Expense) => void;
 }
 
-const ExpenseCard = ({ expense, onClick }: ExpenseCardProps) => {
+const ExpenseCard = ({ expense, onEdit }: ExpenseCardProps) => {
   return (
-    <div
-      onClick={() => onClick(expense)}
-      className="cursor-pointer rounded-lg bg-white p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
-    >
+    <div className="flex flex-col h-full rounded-lg bg-white p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-2">
         <h3 className="font-semibold text-gray-900 truncate pr-2">{expense.title}</h3>
         <span className="text-lg font-bold text-gray-900 whitespace-nowrap">
@@ -30,7 +20,7 @@ const ExpenseCard = ({ expense, onClick }: ExpenseCardProps) => {
       </div>
       <div className="flex items-center gap-2 mb-2">
         <span
-          className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${categoryColors[expense.category]}`}
+          className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[expense.category]}`}
         >
           {expense.category}
         </span>
@@ -39,6 +29,12 @@ const ExpenseCard = ({ expense, onClick }: ExpenseCardProps) => {
       {expense.notes && (
         <p className="text-sm text-gray-500 truncate">{expense.notes}</p>
       )}
+      <div className="flex items-center justify-end gap-2 pt-2 mt-auto border-t border-gray-100">
+        <Button variant="secondary" size="sm" onClick={() => onEdit(expense)}>
+          Edit
+        </Button>
+        <DeleteButton expenseId={expense._id} expenseTitle={expense.title} />
+      </div>
     </div>
   );
 };

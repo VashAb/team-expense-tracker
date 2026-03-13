@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../api/axios';
-import { Expense } from '../types/expense';
+import type { Expense } from '../types/expense';
 
 export const useExpenses = (category?: string) => {
   return useQuery<Expense[]>({

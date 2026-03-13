@@ -1,5 +1,6 @@
 import { useExpenseSummary } from '../hooks/useExpenseSummary';
 import { formatCurrency } from '../utils/format';
+import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
 
 const CategorySummary = () => {
@@ -9,14 +10,9 @@ const CategorySummary = () => {
 
   if (error) {
     return (
-      <div className="rounded-md bg-red-50 p-4 text-center">
+      <div className="rounded-md bg-red-50 p-4 text-center mb-6">
         <p className="text-sm text-red-700 mb-2">Failed to load summary.</p>
-        <button
-          onClick={() => refetch()}
-          className="text-sm font-medium text-red-700 underline hover:text-red-600"
-        >
-          Retry
-        </button>
+        <Button variant="link" onClick={() => refetch()}>Retry</Button>
       </div>
     );
   }
