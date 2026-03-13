@@ -1,19 +1,20 @@
 import { body, validationResult } from 'express-validator';
 import { Request, Response, NextFunction } from 'express';
 import { CATEGORIES } from '../types';
+import { VALIDATION } from '../constants';
 
 export const createExpenseRules = [
   body('title')
     .trim()
     .notEmpty()
     .withMessage('Title is required')
-    .isLength({ max: 120 })
-    .withMessage('Title cannot exceed 120 characters'),
+    .isLength({ max: VALIDATION.TITLE_MAX_LENGTH })
+    .withMessage(`Title cannot exceed ${VALIDATION.TITLE_MAX_LENGTH} characters`),
   body('amount')
     .notEmpty()
     .withMessage('Amount is required')
-    .isFloat({ min: 0.01 })
-    .withMessage('Amount must be at least 0.01'),
+    .isFloat({ min: VALIDATION.AMOUNT_MIN })
+    .withMessage(`Amount must be at least ${VALIDATION.AMOUNT_MIN}`),
   body('category')
     .notEmpty()
     .withMessage('Category is required')
@@ -23,8 +24,8 @@ export const createExpenseRules = [
   body('notes')
     .optional()
     .trim()
-    .isLength({ max: 500 })
-    .withMessage('Notes cannot exceed 500 characters'),
+    .isLength({ max: VALIDATION.NOTES_MAX_LENGTH })
+    .withMessage(`Notes cannot exceed ${VALIDATION.NOTES_MAX_LENGTH} characters`),
 ];
 
 export const updateExpenseRules = [
@@ -33,12 +34,12 @@ export const updateExpenseRules = [
     .trim()
     .notEmpty()
     .withMessage('Title cannot be empty')
-    .isLength({ max: 120 })
-    .withMessage('Title cannot exceed 120 characters'),
+    .isLength({ max: VALIDATION.TITLE_MAX_LENGTH })
+    .withMessage(`Title cannot exceed ${VALIDATION.TITLE_MAX_LENGTH} characters`),
   body('amount')
     .optional()
-    .isFloat({ min: 0.01 })
-    .withMessage('Amount must be at least 0.01'),
+    .isFloat({ min: VALIDATION.AMOUNT_MIN })
+    .withMessage(`Amount must be at least ${VALIDATION.AMOUNT_MIN}`),
   body('category')
     .optional()
     .isIn([...CATEGORIES])
@@ -47,8 +48,8 @@ export const updateExpenseRules = [
   body('notes')
     .optional()
     .trim()
-    .isLength({ max: 500 })
-    .withMessage('Notes cannot exceed 500 characters'),
+    .isLength({ max: VALIDATION.NOTES_MAX_LENGTH })
+    .withMessage(`Notes cannot exceed ${VALIDATION.NOTES_MAX_LENGTH} characters`),
 ];
 
 export const validate = (req: Request, res: Response, next: NextFunction): void => {

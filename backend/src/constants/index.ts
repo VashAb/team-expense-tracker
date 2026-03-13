@@ -1,0 +1,6 @@
+export const VALIDATION = {
+  TITLE_MAX_LENGTH: 120,
+  NOTES_MAX_LENGTH: 500,
+  AMOUNT_MIN: 0.01,
+  EXPENSE_LIST_LIMIT: 100,
+} as const;
