@@ -1,0 +1,7 @@
+{
+  "name": "team-expense-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Team Expense Tracker — MERN + TypeScript",
+  "scripts": {}
+}
