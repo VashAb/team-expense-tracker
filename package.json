@@ -3,5 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Team Expense Tracker — MERN + TypeScript",
-  "scripts": {}
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

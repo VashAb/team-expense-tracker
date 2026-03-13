@@ -4,8 +4,6 @@ export const VALIDATION = {
   AMOUNT_MIN: 0.01,
 } as const;
 
-export const DELETE_CONFIRM_TIMEOUT_MS = 3000;
-
 export const CATEGORY_COLORS = {
   Food: 'bg-green-100 text-green-800',
   Travel: 'bg-blue-100 text-blue-800',
