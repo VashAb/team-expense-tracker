@@ -54,9 +54,7 @@ const FormField = (props: FormFieldProps) => {
         </label>
       )}
       <Element {...elementProps as Record<string, unknown>}>{children}</Element>
-      {error && (
-        <p id={errorId} className="mt-1 text-sm text-red-600">{error}</p>
-      )}
+      <p id={errorId} className="mt-1 text-sm text-red-600 min-h-[1.25rem]">{error ?? '\u00A0'}</p>
     </div>
   );
 };

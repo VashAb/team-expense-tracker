@@ -46,7 +46,7 @@ const ExpenseList = ({ category, onEdit, onAddNew }: ExpenseListProps) => {
       )}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {expenses.map((expense) => (
-          <ExpenseCard key={expense._id} expense={expense} onClick={onEdit} />
+          <ExpenseCard key={expense._id} expense={expense} onEdit={onEdit} />
         ))}
       </div>
     </div>

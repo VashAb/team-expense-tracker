@@ -1,27 +1,12 @@
 import { useExpenseSummary } from '../hooks/useExpenseSummary';
 import { formatCurrency } from '../utils/format';
 import Button from './Button';
-
-const SkeletonCard = () => (
-  <div className="rounded-lg bg-white p-4 shadow-sm border border-gray-200 animate-pulse">
-    <div className="h-4 w-20 bg-gray-200 rounded mb-2" />
-    <div className="h-6 w-24 bg-gray-200 rounded mb-1" />
-    <div className="h-3 w-16 bg-gray-200 rounded" />
-  </div>
-);
+import LoadingSpinner from './LoadingSpinner';
 
 const CategorySummary = () => {
   const { data: summary, isLoading, error, refetch } = useExpenseSummary();
 
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 mb-6">
-        {Array.from({ length: 4 }, (_, i) => (
-          <SkeletonCard key={i} />
-        ))}
-      </div>
-    );
-  }
+  if (isLoading) return <LoadingSpinner />;
 
   if (error) {
     return (
